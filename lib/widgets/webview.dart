@@ -10,7 +10,7 @@ class WebView extends StatefulWidget {
   final String title;
   final bool hideAppbar;
   final bool backForbid;
-  WebView({this.statusBarColor, this.title, this.hideAppbar, this.backForbid = false}) {
+  WebView({this.url, this.statusBarColor, this.title, this.hideAppbar, this.backForbid = false}) {
     if (url != null && url.contains('ctrip.com')) {
       //fix 携程H5 http://无法打开问题
       url = url.replaceAll("http://", 'https://');

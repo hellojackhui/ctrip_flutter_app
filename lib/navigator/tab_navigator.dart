@@ -37,6 +37,7 @@ class _TabNavigatorState extends State<TabNavigator> {
            _currentIndex = index; 
           });
         },
+        type: BottomNavigationBarType.fixed,
         items: [
           _bottomItem(Icons.home, '首页', 0),
           _bottomItem(Icons.search, '搜索', 1),
