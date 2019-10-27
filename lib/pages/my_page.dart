@@ -6,7 +6,7 @@ class MyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: WebView(
-        url: 'https://github.com/hellojackhui/flutter_ctrip_app',
+        url: 'https://m.ctrip.com/webapp/myctrip/',
         hideAppbar: true,
         backForbid: true,
         statusBarColor: '4c5bca',

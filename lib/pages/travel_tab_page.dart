@@ -27,7 +27,7 @@ class _TravelTabPageState extends State<TravelTabPage> with AutomaticKeepAliveCl
   List<TravelItem> travelItems;
   int pageIndex = 1;
   bool isLoading = false;
-  ScrollController _controller = ScrollController()
+  ScrollController _controller = ScrollController();
 
   @override
   void initState() {

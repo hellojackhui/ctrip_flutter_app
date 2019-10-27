@@ -114,6 +114,7 @@ class _SearchPageState extends State<SearchPage> {
               hideLeft: widget.hideLeft,
               defaultText: widget.keyword,
               hint: widget.hint ?? SEARCH_BAR_DEFAULT_TEXT,
+              inputBoxClick: _jumpToSpeak,
               leftButtonClick: () {
                 Navigator.pop(context);
               },
