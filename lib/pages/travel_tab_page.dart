@@ -1,6 +1,7 @@
 import 'package:ctrip_flutter_app/dao/travel_dao.dart';
 import 'package:ctrip_flutter_app/model/travel_model.dart';
 import 'package:ctrip_flutter_app/util/navigator_utils.dart';
+import 'package:ctrip_flutter_app/widgets/loading_container.dart';
 import 'package:ctrip_flutter_app/widgets/webview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -25,15 +26,27 @@ class TravelTabPage extends StatefulWidget {
 class _TravelTabPageState extends State<TravelTabPage> with AutomaticKeepAliveClientMixin{
   List<TravelItem> travelItems;
   int pageIndex = 1;
+  bool isLoading = false;
+  ScrollController _controller = ScrollController()
 
   @override
   void initState() {
     // TODO: implement initState
     _loadData();
+    _controller.addListener(() {
+      if (_controller.position.pixels == _controller.position.maxScrollExtent) {
+        _loadData(loadMore: true);
+      }
+    });
     super.initState();
   }
 
-  void _loadData() async{
+  void _loadData({loadMore = false}) async{
+    if (loadMore) {
+      pageIndex++;
+    } else {
+      pageIndex = 1;
+    }
     TravelDao.fetch(widget.travelUrl??TRAVEL_URL, widget.params, widget.groupChannelCode, widget.type, pageIndex, PAGE_SIZE)
     .then((TravelModel model) {
       setState(() {
@@ -43,9 +56,11 @@ class _TravelTabPageState extends State<TravelTabPage> with AutomaticKeepAliveCl
        } else {
          travelItems = items;
        }
+       isLoading = true;
       });
     }).catchError((e) {
       print(e);
+      isLoading = false;
     });
   }
 
@@ -65,13 +80,29 @@ class _TravelTabPageState extends State<TravelTabPage> with AutomaticKeepAliveCl
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StaggeredGridView.countBuilder(
-        crossAxisCount: 2,
-        itemCount: travelItems?.length ?? 0,
-        itemBuilder: (BuildContext context, int index) => _TravelItem(index: index, item: travelItems[index]),
-        staggeredTileBuilder: (int index) => new StaggeredTile.fit(1),
-      ),
+      body: LoadingContainer(
+        isLoading: isLoading,
+        child: RefreshIndicator(
+          onRefresh: _handleRefresh,
+          child: MediaQuery.removePadding(
+            removeTop: true,
+            context: context,
+            child: StaggeredGridView.countBuilder(
+              controller: _controller,
+              crossAxisCount: 2,
+              itemCount: travelItems?.length ?? 0,
+              itemBuilder: (BuildContext context, int index) => _TravelItem(index: index, item: travelItems[index]),
+              staggeredTileBuilder: (int index) => new StaggeredTile.fit(1),
+            ),
+          ),
+        ),
+      )
     );
+  }
+
+  Future<Null> _handleRefresh() async{
+    _loadData();
+    return null;
   }
 
   @override
@@ -201,5 +232,4 @@ class _TravelItem extends StatelessWidget {
       ),
     );
   }
-
 }

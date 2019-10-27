@@ -2,15 +2,18 @@
 
 A ctrip app written by flutter
 
-## Getting Started
+## Build Setup
+```git
+// clone project
+git clone https://github.com/hellojackhui/flutter_ctrip_app
 
-This project is a starting point for a Flutter application.
+// active project
+cd ctrip_flutter_app
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Environment (Android)
+    - Java 1.8+
+    - Flutter Environment 1.0+
+    - Android SDK
+    - Android Emulator
