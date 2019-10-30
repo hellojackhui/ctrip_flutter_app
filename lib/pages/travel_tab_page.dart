@@ -26,7 +26,7 @@ class TravelTabPage extends StatefulWidget {
 class _TravelTabPageState extends State<TravelTabPage> with AutomaticKeepAliveClientMixin{
   List<TravelItem> travelItems;
   int pageIndex = 1;
-  bool isLoading = false;
+  bool isLoading = true;
   ScrollController _controller = ScrollController();
 
   @override
@@ -47,7 +47,7 @@ class _TravelTabPageState extends State<TravelTabPage> with AutomaticKeepAliveCl
     } else {
       pageIndex = 1;
     }
-    TravelDao.fetch(widget.travelUrl??TRAVEL_URL, widget.params, widget.groupChannelCode, widget.type, pageIndex, PAGE_SIZE)
+    TravelDao.fetch(widget.travelUrl ?? TRAVEL_URL, widget.params, widget.groupChannelCode, widget.type, pageIndex, PAGE_SIZE)
     .then((TravelModel model) {
       setState(() {
        List<TravelItem> items = _filterItems(model.resultList); 

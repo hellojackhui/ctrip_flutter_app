@@ -13,6 +13,7 @@ import 'package:ctrip_flutter_app/widgets/sales_box.dart';
 import 'package:ctrip_flutter_app/widgets/search_bar.dart';
 import 'package:ctrip_flutter_app/widgets/sub_nav.dart';
 import 'package:ctrip_flutter_app/widgets/webview.dart';
+import 'package:flutter_splash_screen/flutter_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
@@ -37,8 +38,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     // TODO: implement initState
-    _handleRefresh();
     super.initState();
+    _handleRefresh();
+    Future.delayed(Duration(milliseconds: 600), () {
+      FlutterSplashScreen.hide();
+    });
   }
 
   void _onscroll(offset) {
