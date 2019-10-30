@@ -1,5 +1,5 @@
+import 'package:ctrip_flutter_app/pages/open_page.dart';
 import 'package:flutter/material.dart';
-import 'package:ctrip_flutter_app/navigator/tab_navigator.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TabNavigator()
+      home: OpenPage()
     );
   }
 }
