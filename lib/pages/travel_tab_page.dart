@@ -56,7 +56,7 @@ class _TravelTabPageState extends State<TravelTabPage> with AutomaticKeepAliveCl
        } else {
          travelItems = items;
        }
-       isLoading = true;
+       isLoading = false;
       });
     }).catchError((e) {
       print(e);

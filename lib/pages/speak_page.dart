@@ -89,7 +89,7 @@ class _SpeakPageState extends State<SpeakPage> with SingleTickerProviderStateMix
               _speakEnd();
             },
             onTapCancel: () {
-              _speakCancel();
+              _speakEnd();
             },
             child: Center(
               child: Column(
@@ -161,9 +161,6 @@ class _SpeakPageState extends State<SpeakPage> with SingleTickerProviderStateMix
     controller.stop();
     AsrManager.stop();
   }
-  _speakCancel() {
-    AsrManager.cancel();
-  }
 }
 
 class AnimatedMic extends AnimatedWidget {
@@ -189,7 +186,7 @@ class AnimatedMic extends AnimatedWidget {
           color: Colors.blue,
           borderRadius: BorderRadius.circular(40)
         ),
-        child: Icon(Icons.mic, color: Colors.white),
+        child: Icon(Icons.mic, color: Colors.white, size: 30,),
       ),
     );
   }

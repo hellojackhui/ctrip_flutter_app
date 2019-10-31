@@ -21,6 +21,7 @@ const APPBAR_SCROLL_OFFSET = 100;
 const SEARCH_BAR_DEFAULT_TEXT = '网红打卡地 景点 酒店 美食';
 
 class HomePage extends StatefulWidget {
+  
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
   List<CommonModel> subNavList = [];
   SalesBoxModel salesBox;
   bool _loading = true;
-  String city = '北京市';
+  String city = '北京';
 
   @override
   void initState() {
@@ -201,7 +202,14 @@ class _HomePageState extends State<HomePage> {
   void _jumpToSpeak() {
     NavigatorUtils.push(context, SpeakPage());
   }
-  void _jumpToCity() {
-    NavigatorUtils.push(context, CityPage());
+  void _jumpToCity() async {
+    var result = await NavigatorUtils.push(context, CityPage(
+      locateCity: city,
+    ));
+    if (result != null) {
+      setState(() {
+        city = result;
+      });
+    }
   }
 }

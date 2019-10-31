@@ -98,9 +98,12 @@ class _SearchBarState extends State<SearchBar> {
                   padding: EdgeInsets.fromLTRB(6, 5, 5, 5),
                   child: Row(
                     children: <Widget>[
-                      Text(
-                        widget.city,
-                        style: TextStyle(color: _homeFontColor, fontSize: 14),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5),
+                        child: Text(
+                          widget.city,
+                          style: TextStyle(color: _homeFontColor, fontSize: 14),
+                        ),
                       ),
                       Icon(
                         Icons.expand_more,
