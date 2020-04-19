@@ -10,6 +10,7 @@ class SearchBar extends StatefulWidget {
   final SearchBarType searchBarType;
   final String hint; //默认提示文案
   final String defaultText;
+  final String rightText;
   final void Function() leftButtonClick;
   final void Function() rightButtonClick;
   final void Function() speakClick;
@@ -24,6 +25,7 @@ class SearchBar extends StatefulWidget {
     this.searchBarType = SearchBarType.normal,
     this.hint,
     this.defaultText,
+    this.rightText = "搜索",
     this.leftButtonClick,
     this.rightButtonClick,
     this.speakClick,
@@ -79,7 +81,7 @@ class _SearchBarState extends State<SearchBar> {
               Container(
                 padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                 child: Text(
-                  '搜索',
+                  widget.rightText,
                   style: TextStyle(color: Colors.blue, fontSize: 17),
                 ),
               ),
@@ -155,6 +157,7 @@ class _SearchBarState extends State<SearchBar> {
           borderRadius: BorderRadius.circular(
               widget.searchBarType == SearchBarType.normal ? 5 : 15)),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Icon(
             Icons.search,

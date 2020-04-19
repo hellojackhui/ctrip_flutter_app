@@ -124,6 +124,7 @@ class _WebViewState extends State<WebView> {
     );
   }
 
+  // 页面的构建是安appbar和expand上下布局
   @override
   Widget build(BuildContext context) {
     String statusBarColorStr = widget.statusBarColor ?? 'ffffff';
@@ -137,6 +138,7 @@ class _WebViewState extends State<WebView> {
       body: Column(
         children: <Widget>[
           _appBar(Color(int.parse('0xff' + statusBarColorStr)), backButtonColor),
+          // expand布局下包含webview的容器，以及需要的配置，还有初始化的时候加载的东西
           Expanded(
             flex: 1,
             child: WebviewScaffold(
